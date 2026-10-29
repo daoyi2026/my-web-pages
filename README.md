@@ -1,20 +1,18 @@
 # My web pages
 
-A collection of self-contained web projects, with each project stored in its own folder.
+A collection of self-contained web projects. The [collection homepage](https://daoyi2026.github.io/my-web-pages/) links directly to each project.
 
-| Project | Folder | Original |
+| Project | Files | Website |
 | --- | --- | --- |
-| Hanfu museum | [hanfu/](hanfu/) | [Repository](https://github.com/daoyi2026/hanfu) · [Published website](https://daoyi2026.github.io/hanfu/) |
-| Dunhuang Star Chart | [dunhuang-star-chart/](dunhuang-star-chart/) | [Repository](https://github.com/daoyi2026/Dunhuang-Star-Chart) · [Published website](https://daoyi2026.github.io/Dunhuang-Star-Chart/) |
-| Temple of Heaven: Hall of Prayer for Good Harvests | [temple-of-heaven/](temple-of-heaven/) | Original local interactive model and research dossier |
+| Hanfu museum | [hanfu/](hanfu/) | [Open](https://daoyi2026.github.io/my-web-pages/hanfu/) |
+| Dunhuang Star Chart | [dunhuang-star-chart/](dunhuang-star-chart/) | [Open](https://daoyi2026.github.io/my-web-pages/dunhuang-star-chart/) |
+| Temple of Heaven: Hall of Prayer for Good Harvests | [temple-of-heaven/](temple-of-heaven/) | [Open](https://daoyi2026.github.io/my-web-pages/temple-of-heaven/) |
 
-The two imported repositories are snapshots of their default branches, not Git submodules. Their existing repositories, version histories, and published websites remain independent; changes made here do not automatically update those originals.
+The Hanfu and Dunhuang folders are snapshots of the original projects' default branches. Each folder contains its own assets and source documentation. The [archives/](archives/) folder preserves the original Git histories and GitHub discussion records. The Temple of Heaven folder also includes a research dossier and local rendering libraries.
 
 - Hanfu snapshot: `4eaf199dc0a17a95e14a5f67842f22647b58a730`.
 - Dunhuang Star Chart snapshot: `3d871ddba129bafd3753c7dc0dfd28cc5d4d2812`.
 
-The Temple of Heaven folder includes the interactive model, local libraries, a preview, and its research materials. Source and attribution information is included with the individual projects.
-
 ## Viewing locally
 
-From the repository directory, run `python3 -m http.server 8000` and visit `http://localhost:8000/`, then open a project folder. A local HTTP server is needed for pages that use JavaScript modules or load local assets.
+From the repository directory, run `python3 -m http.server 8000` and visit `http://localhost:8000/`. A local HTTP server is needed for pages that use JavaScript modules or load local assets.
