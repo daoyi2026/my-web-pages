@@ -13,6 +13,10 @@ The Hanfu and Dunhuang folders are snapshots of the original projects' default b
 - Hanfu snapshot: `4eaf199dc0a17a95e14a5f67842f22647b58a730`.
 - Dunhuang Star Chart snapshot: `3d871ddba129bafd3753c7dc0dfd28cc5d4d2812`.
 
+## Catalog numbering
+
+Project numbers follow creation order and stay with each project. Add a newly created project with the next number (currently `04`), place it first in the catalog, and update the displayed number range without renumbering older projects.
+
 ## Viewing locally
 
 From the repository directory, run `python3 -m http.server 8000` and visit `http://localhost:8000/`. A local HTTP server is needed for pages that use JavaScript modules or load local assets.
