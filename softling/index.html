@@ -1,0 +1,8 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>绒绒 · 把心情变柔软</title><link rel="stylesheet" href="style.css?v=11"></head><body>
+<header><a href="./" aria-label="绒绒首页">绒绒<span>softling</span></a></header>
+<main class="studio" aria-label="画出你的情绪玩偶">
+<section class="drawing-panel" aria-label="画布"><div class="paper"><canvas id="drawing" width="720" height="562" aria-label="画下轮廓"></canvas><div id="drawHint"><span>随手画，慢慢来。</span></div><div class="draw-tools"><button id="undo" aria-label="撤销上一笔" title="撤销上一笔">↶</button><button id="clear" aria-label="清空画布" title="清空画布">⌫</button></div></div><div class="drawing-actions"><button id="example" aria-label="试画一朵云">试试小云朵</button><button id="generate" class="primary">变成玩偶 <span>↗</span></button></div><p id="status" role="status"></p></section>
+<section class="result-panel" aria-label="你的玩偶"><div id="stage"><canvas id="plush" width="900" height="900" aria-label="玩偶，拖动可旋转"></canvas></div><p id="quote">慢慢来，你有自己的时区。</p><button id="share" disabled>导出分享卡片 <span>↗</span></button></section>
+</main>
+<dialog id="cardDialog"><button id="closeCard" aria-label="关闭卡片">×</button><img id="cardPreview" alt="你的玩偶和疗愈短句分享卡片"><a id="downloadCard" download="softling-card.png">保存卡片 ↓</a><button id="nativeShare" hidden>分享或存储到手机</button><p>也可以长按图片保存</p></dialog>
+<script type="module" src="app.js?v=11"></script></body></html>

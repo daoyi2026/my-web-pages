@@ -1,0 +1,32 @@
+<!doctype html><html lang="zh"><meta charset="utf-8"><title>线稿与表情对照</title><style>body{margin:30px;background:#f9f7ef;font:16px system-ui;color:#655d50}section{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}article{background:#fffdf8;border-radius:20px;text-align:center;padding:12px}img,canvas{width:100%;height:auto}#render{display:none}h1{font-size:24px}</style><a href="/">回到工作室</a><h1>多笔线稿与八种表情</h1><p id="status">生成中</p><section id="samples"></section><canvas id="render"></canvas><script type="module">
+import {PlushStudio} from '../plush-3d.js?v=11';
+import {createIdentity} from '../fur-profiles.js?v=11';
+const person=[[[250,240],[265,210],[360,150],[470,105],[510,100],[555,155],[568,210],[565,263],[530,293],[455,317],[370,325],[300,320],[280,285],[282,248],[250,240]],[[408,330],[408,480]],[[443,321],[450,375],[458,470],[440,502],[397,502],[392,480]],[[402,390],[340,407],[290,412],[255,405],[255,385],[281,374],[289,390],[290,411]],[[461,374],[540,374],[576,374],[598,396],[600,415],[558,399],[558,379]],[[402,503],[402,544],[370,555],[370,540],[402,544]],[[431,504],[446,548],[471,540],[475,520],[464,530],[458,546]]];
+const round=[[[220,520],[145,485],[110,410],[115,320],[145,265],[135,190],[155,145],[190,145],[225,210],[280,205],[325,145],[365,135],[395,175],[380,250],[425,300],[445,390],[420,470],[360,520],[280,535],[220,520]]];
+let assertions=0;
+const studio=new PlushStudio(document.querySelector('#render'));const names=['乖乖','困困','眨眼','惊讶','大笑','委屈','满足','小呆'];
+for(let i=0;i<12;i++){
+ await new Promise(r=>requestAnimationFrame(r));
+ const id=createIdentity(i===1||i===3?4:0,new Uint32Array([413,0,7,i<4?0:i-4,1000000000,2,4,9]));
+ studio.angle=i===2||i===3?.7:-.12;studio.build(i<4?person:round,'#cfb496','sweet',id);
+ let shadowCasters=0;for(const group of studio.root.children.filter(o=>['accessory','surroundings'].includes(o.name)))group.traverse(o=>{if(o.castShadow)shadowCasters++;});if(shadowCasters)throw Error('Accessory or prop casts a shadow');assertions++;
+ const body=studio.root.children[0].geometry,index=body.index.array,edges=new Map(),parent=new Map();
+ const find=a=>{if(!parent.has(a))parent.set(a,a);const path=[];while(parent.get(a)!==a){path.push(a);a=parent.get(a);}for(const v of path)parent.set(v,a);return a;};
+ for(let k=0;k<index.length;k+=3)for(let j=0;j<3;j++){const a=index[k+j],b=index[k+(j+1)%3],key=Math.min(a,b)+':'+Math.max(a,b);edges.set(key,(edges.get(key)||0)+1);parent.set(find(a),find(b));}
+ if([...edges.values()].some(n=>n!==2))throw Error('Non-manifold shell');
+ if(new Set([...parent.keys()].map(find)).size!==1)throw Error('Disconnected drawn figure');
+ assertions+=2;
+ const article=document.createElement('article'),image=new Image();image.src=document.querySelector('#render').toDataURL();article.append(image,document.createTextNode(i<4?(i%2?'格子布':'密短毛')+(i>=2?' · 侧面':' · 多笔线稿'):names[i-4]));document.querySelector('#samples').append(article);
+}
+// Boundary cases: a single stroke must have volume; distant strokes must stay apart.
+for(const [shape,expected] of [ [[[[100,100],[400,100]]],1], [[[[100,100],[100,400]],[[400,100],[400,400]]],2] ]){
+ studio.build(shape,'#cfb496','sweet',createIdentity(0,new Uint32Array([413,0,7,0,1,2,4,9])));
+ const geometry=studio.root.children[0].geometry,indices=geometry.index.array,parents=new Map();
+ const root=v=>{if(!parents.has(v))parents.set(v,v);const path=[];while(parents.get(v)!==v){path.push(v);v=parents.get(v);}for(const p of path)parents.set(p,v);return v;};
+ for(let i=0;i<indices.length;i+=3){parents.set(root(indices[i]),root(indices[i+1]));parents.set(root(indices[i]),root(indices[i+2]));}
+ if(new Set([...parents.keys()].map(root)).size!==expected)throw Error('Open stroke component regression');
+ if([...geometry.attributes.position.array].some(v=>!Number.isFinite(v)))throw Error('Invalid mesh coordinate');
+ assertions+=2;
+}
+document.querySelector('#status').textContent='已完成 12 个样本 · '+assertions+' 项检查通过';
+</script></html>
