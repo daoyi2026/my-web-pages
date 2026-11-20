@@ -4,6 +4,7 @@ A collection of self-contained web projects. The [collection homepage](https://d
 
 | No. | Project | Files | Website |
 | --- | --- | --- | --- |
+| 005 | Moonrise — Galaxy | [moonrise/](moonrise/) | [Open](https://daoyi2026.github.io/my-web-pages/moonrise/) |
 | 004 | Softling — Draw Your Plush Companion | [softling/](softling/) | [Open](https://daoyi2026.github.io/my-web-pages/softling/) |
 | 003 | Temple of Heaven: Hall of Prayer for Good Harvests | [temple-of-heaven/](temple-of-heaven/) | [Open](https://daoyi2026.github.io/my-web-pages/temple-of-heaven/) |
 | 002 | Hanfu museum | [hanfu/](hanfu/) | [Open](https://daoyi2026.github.io/my-web-pages/hanfu/) |
@@ -16,9 +17,11 @@ The Hanfu and Dunhuang folders are snapshots of the original projects' default b
 
 ## Catalog numbering
 
-Project numbers follow creation order and stay with each project. Add a newly created project with the next number (currently `005`), place it first in the catalog, use three-digit numbers, and update the displayed number range without renumbering older projects. Both this table and the homepage catalog list newest additions first.
+Project numbers follow creation order and stay with each project. Add a newly created project with the next number (currently `006`), place it first in the catalog, use three-digit numbers, and update the displayed number range without renumbering older projects. Both this table and the homepage catalog list newest additions first.
 
 Softling is a browser-local drawing playground with five plush/fabric styles, random accessories, supportive sentences, mobile drawing controls, and PNG share-card export. It uses locally vendored Three.js and does not require an API key.
+
+Moonrise is a self-contained p5.js galaxy experience with a locally vendored runtime and soundtrack. Its files are copied from [daoyi2026/Moonrise](https://github.com/daoyi2026/Moonrise) at commit `38101bb0621f4b38c24a207c717646d8d0df68bb`.
 
 ## Viewing locally
 
